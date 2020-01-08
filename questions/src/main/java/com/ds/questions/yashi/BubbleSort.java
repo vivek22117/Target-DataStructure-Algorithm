@@ -19,9 +19,13 @@ public class BubbleSort {
 
     private static int[] getSortedArray(int[] inputData) {
 
+        if (inputData.length == 1) {
+            return inputData;
+        }
+
         //Overall O(n2) time complexity Worst Case
         //Space complexity is  O(1) because only one temp variable is required
-        for (int i = 0; i < inputData.length; i++) {//O(n)
+        for (int i = 0; i < inputData.length - 1; i++) {//O(n)
             for (int j = i + 1; j < inputData.length; j++) {//O(n)
                 if (inputData[i] > inputData[j]) {
                     int temp = inputData[i];
