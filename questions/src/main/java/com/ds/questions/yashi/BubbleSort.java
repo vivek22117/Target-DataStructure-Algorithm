@@ -23,6 +23,10 @@ public class BubbleSort {
             return inputData;
         }
 
+        if (inputData == null || inputData.length == 0) {
+            return new int[0];
+        }
+
         //Overall O(n2) time complexity Worst Case
         //Space complexity is  O(1) because only one temp variable is required
         for (int i = 0; i < inputData.length - 1; i++) {//O(n)
