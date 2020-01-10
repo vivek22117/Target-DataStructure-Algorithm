@@ -10,23 +10,26 @@ package com.ds.questions.yashi;
 //Example
 //Input : [5, 4, 11, 18, 1, 9]   Output: [1, 4, 5, 9, 11, 18]
 
+import java.util.Arrays;
+
 public class BubbleSort {
-    private static int[] inputData = {5, 4, 11, 18, 1, 9};
+    private static int[] inputData = {5, 4, 11, 18, 1, 9, 2};
 
     public static void main(String[] args) {
-        getSortedArray(inputData);
+        int[] bubbleSortedOutput = getSortedArray(inputData);
+        System.out.println(Arrays.toString(bubbleSortedOutput));
+
     }
 
     private static int[] getSortedArray(int[] inputData) {
-
-        if (inputData.length == 1) {
-            return inputData;
-        }
 
         if (inputData == null || inputData.length == 0) {
             return new int[0];
         }
 
+        if (inputData.length == 1) {
+            return inputData;
+        }
         //Overall O(n2) time complexity Worst Case
         //Space complexity is  O(1) because only one temp variable is required
         for (int i = 0; i < inputData.length - 1; i++) {//O(n)
