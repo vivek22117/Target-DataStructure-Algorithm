@@ -29,13 +29,13 @@ import java.util.List;
 public class PlusOne {
     // complete the below function
     public int[] plusOne(int[] digits) {
-        return approach3(digits);
+        return approach2(digits);
     }
 
     public static void main(String[] args) {
         PlusOne plusOne = new PlusOne();
-//        int[] digits = {1, 2, 3};
-        int[] digits = {1, 5, 9, 9};
+        int[] digits = {0,1, 2, 3};
+//        int[] digits = {0, 0, 0, 0, 0, 1, 5, 9, 9};
         System.out.println(Arrays.toString(plusOne.plusOne(digits)));
     }
 
@@ -80,38 +80,6 @@ public class PlusOne {
         return outList.stream().mapToInt(Integer::intValue).toArray();
     }
 
-    /**
-     * In this approach first take each element from an array  and append it in string
-     * convert tht string to integer
-     * add one to integer
-     * then create an array of length of string
-     * traverse the number and add it in the output array
-     *
-     * @param digits
-     * @return
-     */
-    private int[] approachOne(int[] digits) {
-        String s = "";
-        for (int digit : digits) {
-            if (digits[0] != 0) {
-                s = s + digit;
-            } else {
-                continue;
-            }
-        }
-
-        return populateOutputArray(s);
-    }
-
-
-    /**
-     * * In this approach we first get the combined digits of array element
-     * * and then create an output array of one plus size of an input array
-     * * second loop is to get the remainder and add it in the output array
-     *
-     * @param digits
-     * @return
-     */
     private int[] approach2(int[] digits) {
         int sum = 0;
         for (int i = 0; i < digits.length; i++) {
