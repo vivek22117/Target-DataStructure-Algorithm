@@ -26,6 +26,7 @@ public class PlusOne {
     // complete the below function
     public int[] plusOne(int[] digits) {
 
+        return null;
     }
 
 }
