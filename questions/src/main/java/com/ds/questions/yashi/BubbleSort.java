@@ -13,12 +13,12 @@ package com.ds.questions.yashi;
 import java.util.Arrays;
 
 public class BubbleSort {
-    private static int[] inputData = {5, 4, 11, 18, 1, 9, 2};
+    //    private static int[] inputData = {5, 4, 11, 18, 1, 9, 2};
+    private static int[] inputData = {1, 2, 4, 5, 9, 11, 18};
 
     public static void main(String[] args) {
         int[] bubbleSortedOutput = getSortedArray(inputData);
         System.out.println(Arrays.toString(bubbleSortedOutput));
-
     }
 
     private static int[] getSortedArray(int[] inputData) {
@@ -28,6 +28,16 @@ public class BubbleSort {
         }
 
         if (inputData.length == 1) {
+            return inputData;
+        }
+        boolean sortedFlag = true;
+
+        for (int i = 0; i < inputData.length - 1; i++) {
+            if (inputData[i] > inputData[i + 1]) {
+                sortedFlag = false;
+            }
+        }
+        if (sortedFlag) {
             return inputData;
         }
         //Overall O(n2) time complexity Worst Case
@@ -43,5 +53,4 @@ public class BubbleSort {
         }
         return inputData;
     }
-
 }
