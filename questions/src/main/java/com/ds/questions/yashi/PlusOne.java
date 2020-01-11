@@ -21,80 +21,48 @@
  */
 package com.ds.questions.yashi;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class PlusOne {
     // complete the below function
     public int[] plusOne(int[] digits) {
-        return approach2(digits);
+        return approach4(digits);
     }
 
     public static void main(String[] args) {
         PlusOne plusOne = new PlusOne();
-        int[] digits = {0,1, 2, 3};
-//        int[] digits = {0, 0, 0, 0, 0, 1, 5, 9, 9};
+//        int[] digits = {9, 9, 9, 9,8,9,1,9};
+//        int[] digits = {1, 5, 9, 9};
+        int[] digits = {1, 2, 3, 4};
         System.out.println(Arrays.toString(plusOne.plusOne(digits)));
     }
 
-    private int[] populateOutputArray(String s) {
-        int result = Integer.parseInt(s) + 1;
-        int length = String.valueOf(result).length();
-        int[] out = new int[length];
-        int i = out.length - 1;
-        while (result > 0) {
-            int remainder = result % 10;
-            out[i] = remainder;
-            result = result / 10;
-            i--;
-        }
-        return out;
-    }
 
+    private int[] approach4(int[] digits) {
+        if (digits[digits.length - 1] < 9) {
+            digits[digits.length - 1]++;
+            return digits;
+        } else {
+            int result = 0;
+            int carry = 0;
+            int total = 0;
+            int[] out = new int[digits.length + 1];
+            int j = out.length - 1;
+            for (int i = digits.length - 1; i >= 0; i--) {
+                if (i == digits.length - 1) {
+                    total = digits[i] + 1 + carry;
+                } else {
+                    total = digits[i] + carry;
+                }
+                result = total % 10;
+                carry = total / 10;
+                out[j--] = result;
 
-    /**
-     * In this approach we first get the combined digits of array element
-     * and then create list for output array
-     * second loop is to get the remainder and add it in the list
-     * at the end reverse the list and convert it into array
-     *
-     * @param digits
-     * @return
-     */
-    private int[] approach3(int[] digits) {
-        int sum = 0;
-        for (int i = 0; i < digits.length; i++) {
-            sum = sum * 10 + digits[i];
+                if (i == 0 && carry == 1) {
+                    out[0] = 1;
+                }
+            }
+            return out;
         }
-        sum = sum + 1;
-        List<Integer> outList = new ArrayList<>();
-        while (sum > 0) {
-            int remainder = sum % 10;
-            outList.add(remainder);
-            sum = sum / 10;
-        }
-        Collections.reverse(outList);
-
-        return outList.stream().mapToInt(Integer::intValue).toArray();
-    }
-
-    private int[] approach2(int[] digits) {
-        int sum = 0;
-        for (int i = 0; i < digits.length; i++) {
-            sum = sum * 10 + digits[i];
-        }
-        sum = sum + 1;
-        int out[] = new int[digits.length + 1];
-        int i = out.length - 1;
-        while (sum > 0) {
-            int remainder = sum % 10;
-            out[i] = (remainder);
-            sum = sum / 10;
-            i--;
-        }
-
-        return out;
     }
 }
