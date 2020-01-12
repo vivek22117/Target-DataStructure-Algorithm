@@ -50,13 +50,4 @@ public class RemoveDup {
 	}
 	return len;
     }
-
-    public static void main(String[] args) {
-	// int[] nums = { 1, 1, 1, 2, 2, 3 };
-	int[] nums = { 0, 0, 1, 1, 1, 1, 2, 3, 3 };
-	System.out.println(new RemoveDup().removeDuplicates(nums));
-	for (int i : nums) {
-	    System.out.print(i + " ");
-	}
-    }
 }
