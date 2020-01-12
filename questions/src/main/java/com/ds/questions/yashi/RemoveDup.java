@@ -26,7 +26,7 @@ public class RemoveDup {
         int total = 0;
         int count = 1;
 
-        if (nums == null && nums.length == 0) {
+        if (nums == null || nums.length == 0) {
             return 0;
         }
         if (nums.length == 1) {
