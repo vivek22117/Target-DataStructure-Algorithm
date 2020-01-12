@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class BubbleSort {
     //    private static int[] inputData = {5, 4, 11, 18, 1, 9, 2};
-    private static int[] inputData = {1, 2, 4, 5, 9, 11, 18};
+    private static int[] inputData = {2, 1, 4, 5, 9, 11, 18};
 
     public static void main(String[] args) {
         int[] bubbleSortedOutput = getSortedArray(inputData);
@@ -32,23 +32,20 @@ public class BubbleSort {
         }
         boolean sortedFlag = true;
 
-        for (int i = 0; i < inputData.length - 1; i++) {
-            if (inputData[i] > inputData[i + 1]) {
-                sortedFlag = false;
-            }
-        }
-        if (sortedFlag) {
-            return inputData;
-        }
         //Overall O(n2) time complexity Worst Case
         //Space complexity is  O(1) because only one temp variable is required
         for (int i = 0; i < inputData.length - 1; i++) {//O(n)
+            sortedFlag = true;
             for (int j = i + 1; j < inputData.length; j++) {//O(n)
                 if (inputData[i] > inputData[j]) {
+                    sortedFlag = false;
                     int temp = inputData[i];
                     inputData[i] = inputData[j];
                     inputData[j] = temp;
                 }
+            }
+            if (sortedFlag) {
+                break;
             }
         }
         return inputData;
