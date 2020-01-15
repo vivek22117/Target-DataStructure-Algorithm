@@ -26,52 +26,42 @@ public class AddDigitByDigit {
 
     public static int[] preformAdditionDigitByDigit(int[] arrayA, int[] arrayB) {
 	int maxLen = arrayA.length > arrayB.length ? arrayA.length : arrayB.length;
-	int[] result = new int[maxLen];
+	int[] resultArr = new int[maxLen];
 	int carry = 0;
-	int i = arrayA.length - 1;
-	int j = arrayB.length - 1;
-	int k = result.length - 1;
-	for (; i >= 0 && j >= 0; i--) {
-	    if (arrayA[i] + arrayB[j] + carry > 9) {
-		result[k] = (arrayA[i] + arrayB[j] + carry) % 10;
-		carry = 1;
-	    } else {
-		result[k] = arrayA[i] + arrayB[j] + carry;
-		carry = 0;
-	    }
-	    k -= 1;
-	    j -= 1;
+	int aIndex = arrayA.length - 1;
+	int bIndex = arrayB.length - 1;
+	int resultIndex = resultArr.length - 1;
+	for (; aIndex >= 0 && bIndex >= 0; aIndex--) {
+	    carry = performSum(resultArr, resultIndex, arrayA[aIndex] + arrayB[bIndex] + carry);
+	    resultIndex -= 1;
+	    bIndex -= 1;
 	}
-	while (i >= 0) {
-	    if (arrayA[i] + carry > 9) {
-		result[k] = (arrayA[i] + carry) % 10;
-		carry = 1;
-	    } else {
-		result[k] = arrayA[i] + carry;
-		carry = 0;
-	    }
-	    i -= 1;
-	    k -= 1;
+	for (; aIndex >= 0; aIndex--) {
+	    carry = performSum(resultArr, resultIndex, arrayA[aIndex] + carry);
+	    resultIndex -= 1;
 	}
-	while (j >= 0) {
-	    if (arrayB[j] + carry > 9) {
-		result[k] = (arrayB[j] + carry) % 10;
-		carry = 1;
-	    } else {
-		result[k] = arrayB[j] + carry;
-		carry = 0;
-	    }
-	    j -= 1;
-	    k -= 1;
+	for (; bIndex >= 0; bIndex--) {
+	    carry = performSum(resultArr, resultIndex, arrayB[bIndex] + carry);
+	    resultIndex -= 1;
 	}
 	if (carry != 0) {
-	    int[] temp = new int[result.length + 1];
-	    for (int l = result.length; l > 0; l--) {
-		temp[l] = result[l - 1];
+	    int[] temp = new int[resultArr.length + 1];
+	    for (int l = resultArr.length; l > 0; l--) {
+		temp[l] = resultArr[l - 1];
 	    }
 	    temp[0] = carry;
-	    result = temp;
+	    resultArr = temp;
 	}
-	return result;
+	return resultArr;
+    }
+
+    private static int performSum(int[] arr, int index, int sum) {
+	arr[index] = sum;
+	int carry = 0;
+	if (sum > 9) {
+	    arr[index] = sum % 10;
+	    carry = 1;
+	}
+	return carry;
     }
 }
