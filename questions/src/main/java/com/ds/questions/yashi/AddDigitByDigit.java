@@ -16,8 +16,8 @@ import java.util.Arrays;
  * Return new array of result Result: [2, 6, 3, 0]!
  * */
 public class AddDigitByDigit {
-    private static final int[] arrayA = {2, 4, 5, 1, 8, 7};
-    private static final int[] arrayB = {1, 7, 9, 9, 9};
+    private static final int[] arrayA = {2, 4, 9};
+    private static final int[] arrayB = {1, 7, 9};
 
     public static void main(String[] args) {
         int[] result = preformAdditionDigitByDigit(arrayA, arrayB);
@@ -27,54 +27,31 @@ public class AddDigitByDigit {
 
     public static int[] preformAdditionDigitByDigit(int[] arrayA, int[] arrayB) {
 
+        int out[];
         if (arrayA.length == arrayB.length) {
-            int out[] = new int[arrayA.length + 1];
-            int outIndex = out.length - 1;
-            int carry = 0;
-            for (int i = arrayA.length - 1, j = arrayB.length - 1; i >= 0 || j >= 0; i--, j--) {
-                int total;
-                int rem;
-                total = arrayA[i] + arrayB[j] + carry;
-                rem = total % 10;
-                carry = total / 10;
-                out[outIndex--] = rem;
-            }
-            return out;
+            out = new int[arrayA.length + 1];
         } else if (arrayA.length > arrayB.length) {
-            int out[] = new int[arrayA.length + 1];
-            int outIndex = out.length - 1;
-            int carry = 0;
-            for (int i = arrayA.length - 1, j = arrayB.length - 1; i >= 0 || j >= 0; i--, j--) {
-                int total;
-                int rem;
-                if (j < 0) {
-                    total = arrayA[i] + 0 + carry;
-                } else {
-                    total = arrayA[i] + arrayB[j] + carry;
-                }
-                rem = total % 10;
-                carry = total / 10;
-                out[outIndex--] = rem;
-            }
-            return out;
+            out = new int[arrayA.length + 1];
         } else {
-            int out[] = new int[arrayB.length + 1];
-            int outIndex = out.length - 1;
-            int carry = 0;
-            for (int i = arrayA.length - 1, j = arrayB.length - 1; i >= 0 || j >= 0; i--, j--) {
-                int total;
-                int rem;
-                if (i < 0) {
-                    total = 0 + arrayB[j] + carry;
-                } else {
-                    total = arrayA[i] + arrayB[j] + carry;
-                }
-                rem = total % 10;
-                carry = total / 10;
-                out[outIndex--] = rem;
-            }
-            return out;
+            out = new int[arrayB.length + 1];
         }
-
+        int outIndex = out.length - 1;
+        int carry = 0;
+        for (int i = arrayA.length - 1, j = arrayB.length - 1; i >= 0 || j >= 0; i--, j--) {
+            int total;
+            int rem;
+            if (i < 0) {
+                total = 0 + arrayB[j] + carry;
+            } else if (j < 0) {
+                total = arrayA[i] + 0 + carry;
+            } else {
+                total = arrayA[i] + arrayB[j] + carry;
+            }
+            rem = total % 10;
+            carry = total / 10;
+            out[outIndex--] = rem;
+        }
+        return out;
     }
 }
+
