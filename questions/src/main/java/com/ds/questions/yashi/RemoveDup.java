@@ -36,15 +36,10 @@ public class RemoveDup {
         //O(n) Time complexity
         for (int i = 0; i < nums.length - 1; i++) {
             if (nums[i] == nums[i + 1]) {
-                if (count <= 2) {
+                if (count < 2) {
                     count++;
-                } else {
-                    continue;
                 }
             } else {
-                if (count > 2) {
-                    count = 2;
-                }
                 total = total + count;
                 count = 1;
             }
@@ -55,8 +50,9 @@ public class RemoveDup {
 
     public static void main(String[] args) {
         RemoveDup removeDup = new RemoveDup();
-        int nums[] = {0, 0, 1, 1, 1, 1, 2, 3, 3};
-//        int nums[] = {1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6};
+
+//        int nums[] = {0, 0, 1, 1, 1, 1, 2, 3, 3};
+        int nums[] = {1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6};
         System.out.println(removeDup.removeDuplicates(nums));
     }
 }
