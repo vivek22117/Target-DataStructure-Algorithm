@@ -3,8 +3,8 @@ package com.ds.questions.vivek;
 import java.util.Arrays;
 
 public class SearchRange {
-    private static final int[] inputData = {9, 9, 9};
-    private static final int target = 9;
+    private static final int[] inputData = {3, 4, 4, 9, 9, 9};
+    private static final int target = 4;
 
     public static void main(String[] args) {
         int[] range = findRange(inputData, target);
@@ -29,7 +29,7 @@ public class SearchRange {
         int mid = (firstIndex + lastIndex) / 2;
         if (inputData[mid] == target) {
             return searchIndexes(inputData, mid, target);
-        } else if (inputData[mid] < target) {
+        } else if (target > inputData[mid]) {
             return fetchRangeIndex(inputData, mid + 1, lastIndex, target);
         } else {
             return fetchRangeIndex(inputData, firstIndex, mid - 1, target);
