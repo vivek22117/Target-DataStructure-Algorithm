@@ -18,6 +18,8 @@ package com.ds.questions;
  */
 public class SearchRange {
     public int[] searchRange(int[] nums, int target) {
+
+
         return new int[0];
     }
 }
