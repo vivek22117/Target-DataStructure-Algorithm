@@ -22,7 +22,7 @@ public class SearchRange {
 
     public static int[] searchRange(int[] nums, int target) {
         int count = 0;
-        int[] out = new int[2];
+        int[] out = new int[]{-1,-1};
         for (int i = 0; i <= nums.length - 1; i++) {
             if (nums[i] == target && count == 0) {
                 out[0] = i;
@@ -40,7 +40,8 @@ public class SearchRange {
 
 
     public static void main(String[] args) {
-        int[] nums = new int[]{8, 8, 8, 8, 8,8,8, 10};
+//        int[] nums = new int[]{8, 8, 8, 8, 8,8,8, 10};
+        int[] nums = new int[]{2,3, 7, 10};
         int target = 8;
         System.out.println(Arrays.toString(searchRange(nums, target)));
     }
