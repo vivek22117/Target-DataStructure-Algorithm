@@ -16,8 +16,19 @@ public class FindThreeLargestNumber {
     }
 
     private static int[] findThreeLargestNumber(int[] inputData) {
+        if (inputData == null || inputData.length == 0) {
+            return new int[]{0, 0};
+        } else {
+            for (int i = 0; i < 3; i++) {
+                for (int j = i + 1; j <= inputData.length - 1; j++)
+                    if (inputData[j] > inputData[i]) {
+                        int temp = inputData[j];
+                        inputData[j] = inputData[i];
+                        inputData[i] = temp;
+                    }
+            }
+        }
+        return inputData;
 
-
-        return null;
     }
 }
