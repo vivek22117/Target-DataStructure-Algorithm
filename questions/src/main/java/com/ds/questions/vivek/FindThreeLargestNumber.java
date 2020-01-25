@@ -1,6 +1,8 @@
 package com.ds.questions.vivek;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.PriorityQueue;
 
 public class FindThreeLargestNumber {
 
@@ -9,6 +11,10 @@ public class FindThreeLargestNumber {
     public static void main(String[] args) {
         int[] threeLargestNumber = findThreeLargestNumber(inputData);
         System.out.println(Arrays.toString(threeLargestNumber));
+
+        //Using Heap DS
+        int[] threeLargestNum = findThreeLargestNum(inputData, 3);
+        System.out.println(Arrays.toString(threeLargestNum));
     }
 
     // Time Complexity: O(n x m), where m is the number of largest numbers
@@ -38,5 +44,19 @@ public class FindThreeLargestNumber {
             }
             N++;
         }
+    }
+
+    public static int[] findThreeLargestNum(int[] data, int target) {
+        PriorityQueue<Integer> largestValues = new PriorityQueue<Integer>(target, Collections.reverseOrder());
+        int[] result = new int[target];
+        for (int i = 0; i < data.length; i++) {
+            largestValues.add(data[i]);
+        }
+
+        for (int j = target - 1; j >= 0; j--) {
+            result[j] = largestValues.remove();
+        }
+        return result;
+
     }
 }
