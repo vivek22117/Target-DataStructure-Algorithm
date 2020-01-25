@@ -1,4 +1,4 @@
-package com.ds.questions;
+package com.ds.questions.yashi;
 
 import java.util.Arrays;
 
