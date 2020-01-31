@@ -34,5 +34,8 @@ package com.ds.questions;
  *
  */
 public class ValidParentheses {
+    public boolean isValid(String s) {
+	return false;
+    }
 
 }
